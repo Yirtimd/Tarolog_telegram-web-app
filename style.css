@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script> <!-- Подключение библиотеки -->
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="styleguide.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="iphone-pro">
+      <div class="div">
+        <img class="cancer" src="img/cancer.png" />
+        <img class="aries" src="img/aries.png" />
+        <img class="aquarius" src="img/aquarius.png" />
+        <img class="gemini" src="img/gemini.png" />
+        <img class="leo" src="img/leo.png" />
+        <img class="pisces" src="img/pisces.png" />
+        <img class="virgo" src="img/virgo.png" />
+        <img class="linked-scorpio" src="img/linked-scorpio.png" />
+        <img class="libra" src="img/libra.png" />
+        <img class="taurus" src="img/taurus.png" />
+        <img class="capricorn" src="img/capricorn.png" />
+        <div class="input-date-picker" data-m3-mode="dark">
+          <header class="header">
+            <div class="select-date">Ваш возраст</div>
+            <div class="frame">
+              <div class="week-day-day">Выберите дату</div>
+              <div class="icon-button">
+                <div class="container">
+                  <div class="state-layer"><img class="icon" src="img/icon.svg" /></div>
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="date">
+            <div class="text-field">
+              <div class="state-layer-wrapper">
+                <div class="content-wrapper">
+                  <div class="content">
+                    <div class="input-text-container"><div class="input-text">mm/dd/yyyy</div></div>
+                    <div class="label-text-container"><div class="label-text">Date</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="local-actions">
+            <div class="div-wrapper">
+              <div class="label-text-wrapper"><div class="text-wrapper">Clear</div></div>
+            </div>
+            <div class="button-container">
+              <button class="secondary-button">
+                <div class="label-text-wrapper"><div class="text-wrapper">Cancel</div></div>
+              </button>
+              <div class="div-wrapper">
+                <div class="label-text-wrapper"><div class="text-wrapper">OK</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-wrapper-2">Твой таролог</div>
+      </div>
+    </div>
+
+    <script>
+      // Ваши системные функции и обработчики событий Telegram WebApp
+      function biometricRemoveToken(el) {
+        const biometricManager = Telegram.WebApp.BiometricManager;
+        if (!biometricManager.isInited) {
+          return DemoApp.showAlert('Biometric not inited yet!');
+        }
+
+        biometricManager.updateBiometricToken('', function(updated) {
+          if (updated) {
+            document.getElementById('bm_token_saved').textContent = biometricManager.isBiometricTokenSaved ? 'true' : 'false';
+            el.nextElementSibling.innerHTML = '(Removed)';
+            el.nextElementSibling.className = 'ok';
+          } else {
+            el.nextElementSibling.innerHTML = '(Failed)';
+            el.nextElementSibling.className = 'err';
+          }
+        });
+      }
+
+      // Пример инициализации и обработки событий Telegram WebApp
+      Telegram.WebApp.onEvent('themeChanged', function () {
+        // Обработчик изменения темы
+        console.log('Theme changed to:', Telegram.WebApp.themeParams);
+      });
+
+      // Другие функции и обработчики могут быть добавлены здесь...
+    </script>
+  </body>
+</html>
